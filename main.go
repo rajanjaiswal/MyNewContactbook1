@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/rajanjaiswal/MyNewContactbook/controllers"
-
 	"github.com/gin-gonic/gin"
+	"github.com/rajanjaiswal/MyNewContactbook/controllers"
 	"github.com/rajanjaiswal/MyNewContactbook/models"
 )
 
