@@ -15,7 +15,10 @@ import (
 
 func ConnectDatabase() *gorm.DB {
 	godotenv.Load()
-	dsn := fmt.Sprintf("host=localhost user=postgres password=123 dbname=%s port=5432 sslmode=disable TimeZone=Asia/Shanghai", os.Getenv("DB_NAME"))
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai",
+		os.Getenv("DB_HOST"), os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"), os.Getenv("DB_PORT"),
+	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
@@ -25,6 +28,9 @@ func ConnectDatabase() *gorm.DB {
 		&models.Address{},
 		&models.Phone{},
 	)
+	if err != nil {
+		panic(err)
+	}
 	//DB = db
 	return db
 
