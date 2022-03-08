@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/rajanjaiswal/MyNewContactbook/internals/contact"
+	"github.com/rajanjaiswal/MyNewContactbook/internals/user"
+	"gorm.io/gorm"
 
 	"github.com/rajanjaiswal/MyNewContactbook/pkg/db/postgres"
-
-	"gorm.io/gorm"
 )
 
 type server struct {
@@ -46,4 +46,5 @@ func (s *server) initRoutes() {
 	// r.GET("/contacts/:id", controllers.GetContactById)
 	// r.DELETE("/contacts/:id", controllers.DeleteContactsById)
 	contact.RegisterRoutes(r, contact.NewService(contact.NewRepository(*s.DB)))
+	user.RegisterRoutes(r, user.NewService(user.NewRepository(*s.DB)))
 }
